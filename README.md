@@ -13,8 +13,8 @@ This boilerplate is currently based on:
 
 1. Running `git clone https://github.com/luisecm/appium-flutter-poc.git`
 1. Running `npm install`
-1. Installing Appium on a local machine [here](https://appium.io/docs/en/about-appium/getting-started/)
-1. Setting up Android and iOS on a local machine [here](https://appium.io/docs/en/about-appium/getting-started/)
+1. Installing Appium on a local machine. You can find detailed instructions for this process [here](https://appium.io/docs/en/about-appium/getting-started/)
+1. Setting up Android and iOS on a local machine. The getting started page from Appium can be a helfpul guide for this process and it can be found [here](https://appium.io/docs/en/about-appium/getting-started/)
 1. Create a `./apps` directory. Ask development team to provide .apk file for Android app and .zip file for iOS app. Move the files into the directory `apps`.
 1. Running tests `npm run android.app` or `npm run android.app`
 
