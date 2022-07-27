@@ -3,12 +3,9 @@
     "version": "1.0.0",
     "description": "An automation testing framework built with NodeJS, WebdriverIO, Appium to test ios/android app created on Flutter",
     "scripts": {
-        "android.sauce.emulators.app.us": "wdio config/saucelabs/wdio.android.emulators.app.conf.ts",
         "android.app": "wdio config/wdio.android.app.conf.ts",
-        "android.browser": "wdio config/wdio.android.browser.conf.ts",
-        "ios.sauce.simulators.app.us": "wdio ./config/saucelabs/wdio.ios.simulators.app.conf.ts",
+        "android.ci": "wdio config/wdio.android.ci.conf.ts",
         "ios.app": "wdio config/wdio.ios.app.conf.ts",
-        "ios.browser": "wdio config/wdio.ios.browser.conf.ts",
         "lint": "eslint config tests"
     },
     "repository": {
