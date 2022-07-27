@@ -14,8 +14,8 @@ jobs:
     runs-on: macos-latest
     strategy: # we are using strategy if we need to run on parallel with different devices and version
       matrix:
-        api-level: [29, 30, 32] #Google api level
-        target: [google_apis]
+        api-level: [25] #Google api level
+        target: [default]
         node-version: [14.x]
     steps:
     - name: Checkout ✔️
@@ -41,4 +41,4 @@ jobs:
         target: ${{ matrix.target }}
         arch: x86_64
         profile: Nexus 6
-        script: npm run android.app # running our test with info to check the results
+        script: npm run android.ci # running our test with info to check the results
