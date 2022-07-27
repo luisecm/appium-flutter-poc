@@ -1,0 +1,44 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Testing Changes to Repository
+env: # Or as an environment variable
+  SAUCE_HOSTNAME: ${{ secrets.SAUCE_HOSTNAME }}
+  SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+  SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    strategy: # we are using strategy if we need to run on parallel with different devices and version
+      matrix:
+        api-level: [25] #Google api level for example [25,23,28] 
+        target: [default]
+        node-version: [14.x]
+    steps:
+    - uses: actions/checkout@v3 #checkout the code 
+    - name: Use Node.js ${{ matrix.node-version }} 🔨
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install NPM dependencies 📦
+      run: |
+        npm ci
+    - name: Install and Run Appium Server 📱
+      run: |
+        chmod +x ./scripts/run_appium_server.sh # install and run appium server in the background
+        ./scripts/RunAppiumServer.sh
+    - name: Run Appium Tests 🌡️
+      uses: reactivecircus/android-emulator-runner@v1 # install and create the Emulator
+      with:
+        api-level: ${{ matrix.api-level }}
+        target: ${{ matrix.target }}
+        arch: x86_64
+        profile: Nexus 6
+        script: npm run android.app # running our test with info to check the results
