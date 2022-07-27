@@ -14,8 +14,8 @@ jobs:
     runs-on: macos-latest
     strategy: # we are using strategy if we need to run on parallel with different devices and version
       matrix:
-        api-level: [29, 30, 32] #Google api level for example [25,23,28] 
-        target: [default, google_apis]
+        api-level: [29, 30, 32] #Google api level
+        target: [google_apis]
         node-version: [14.x]
     steps:
     - name: Checkout ✔️
